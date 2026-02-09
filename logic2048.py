@@ -13,8 +13,7 @@ class Game():
         # Résultat : [[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]]
 
         self.add_new_tile()
-
-        print(self.grid)
+        self.add_new_tile()
     
     def reverse(self):
         # On inverse chaque ligne de la grille
@@ -96,12 +95,3 @@ class Game():
             self.grid[r][c] = 2
         else:
             self.grid[r][c] = 4
-
-game = Game()
-game.grid = [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]
-
-print(game.grid)
-
-game.move_left()
-
-print(game.grid)

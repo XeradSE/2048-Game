@@ -48,7 +48,6 @@ class MainWindow(QMainWindow):
                 font.setBold(True)
                 label_test.setFont(font)
                 self.layout.addWidget(label_test, i, j)
-        print(self.game.score)
 
     def play_turn(self, direction):
         # 1. On fait une VRAIE copie de la grille

@@ -1,4 +1,3 @@
-# Code couleur officiel du jeu 2048
 TILE_COLORS = {
     0:  "#cdc1b4",  # Case vide (gris)
     2:  "#eee4da",
