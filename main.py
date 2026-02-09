@@ -27,11 +27,8 @@ class MainWindow(QMainWindow):
                 label_test = QLabel("")
                 if value != 0:
                     label_test.setText(str(value))
-                # 2. Gestion de la Couleur (Background)
-                # .get(key, default) est très utile si tu dépasses 2048 (évite le crash)
+                # .get(key, default)
                 bg_color = configuration.TILE_COLORS.get(value, "#3c3a32") 
-                
-                # 3. Gestion de la Couleur du Texte
                 text_color = configuration.LABEL_COLORS.get(value, "#f9f6f2") # Blanc par défaut
                 style = f"""
                     QLabel {{
@@ -50,10 +47,9 @@ class MainWindow(QMainWindow):
                 self.layout.addWidget(label_test, i, j)
 
     def play_turn(self, direction):
-        # 1. On fait une VRAIE copie de la grille
+        # on fait une VRAIE copie de la grille
         grid_before = copy.deepcopy(self.game.grid)
         
-        # 2. On tente le mouvement
         if direction == "left":
             self.game.move_left()
         elif direction == "right":
@@ -63,11 +59,9 @@ class MainWindow(QMainWindow):
         else:
             self.game.move_down()
         
-        # 3. On compare les valeurs
         if grid_before != self.game.grid:
-            # Si ça a bougé, on ajoute une tuile ET on met à jour l'affichage
             self.game.add_new_tile()
-            self.update_interface() # Ta méthode PyQt
+            self.update_interface()
 
     def keyPressEvent(self, event):
         # On récupère la touche pressée

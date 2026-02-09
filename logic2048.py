@@ -28,11 +28,9 @@ class Game():
         new_grid = []
         
         for row in self.grid:
-            # ETAPE 1 : COMPRESSION (On enlève les zéros)
             # [2, 0, 2, 0] devient [2, 2]
             temp_row = [num for num in row if num != 0]
             
-            # ETAPE 2 : FUSION
             # On parcourt la liste compressée. Si deux nombres se suivent, on fusionne.
             # On s'arrête à l'avant-dernier élément (len - 1)
             i = 0
@@ -47,7 +45,6 @@ class Game():
             # À ce stade, [2, 2] est devenu [4, 0] s'il y a eu fusion
             # Ou [2, 2, 2, 2] est devenu [4, 0, 4, 0]
             
-            # ETAPE 3 : NETTOYAGE FINAL + REMPLISSAGE
             # On refait une compression pour virer les 0 créés par la fusion
             final_row = [num for num in temp_row if num != 0]
             
@@ -77,7 +74,6 @@ class Game():
         self.transpose()     # 5. Transpose retour
 
     def add_new_tile(self):
-        # Etape 1 : Trouver toutes les cases vides
         # On crée une liste de tuples (ligne, colonne) pour chaque case qui vaut 0
         empty_cells = [(r, c) for r in range(4) for c in range(4) if self.grid[r][c] == 0]
 
@@ -86,10 +82,9 @@ class Game():
             return
 
         # Etape 2 : Choisir une case au hasard
-        # random.choice prend un élément aléatoire dans une liste. Simple.
+        # random.choice prend un élément aléatoire dans une liste.
         (r, c) = random.choice(empty_cells)
 
-        # Etape 3 : Placer un 2 ou un 4
         # Règle officielle : 90% de chance d'avoir un 2, 10% d'avoir un 4
         if random.random() < 0.9:
             self.grid[r][c] = 2
