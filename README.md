@@ -1,1 +1,1 @@
-A simple game that implements the game 2048. 
+A simple application that implements the game 2048. 
