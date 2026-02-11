@@ -85,8 +85,30 @@ class Game():
         # random.choice prend un élément aléatoire dans une liste.
         (r, c) = random.choice(empty_cells)
 
-        # Règle officielle : 90% de chance d'avoir un 2, 10% d'avoir un 4
+        # Règle : 90% de chance d'avoir un 2, 10% d'avoir un 4
         if random.random() < 0.9:
             self.grid[r][c] = 2
         else:
             self.grid[r][c] = 4
+
+    def is_game_over(self):
+        # 1. Reste-t-il des cases vides ?
+        for row in self.grid:
+            if 0 in row:
+                return False
+
+        # 2. Fusions horizontales possibles ?
+        # On s'arrête à la colonne 2 (index 3 exclut) pour comparer avec col+1
+        for r in range(4):
+            for c in range(3):
+                if self.grid[r][c] == self.grid[r][c+1]:
+                    return False
+
+        # 3. Fusions verticales possibles ?
+        # On s'arrête à la ligne 2 pour comparer avec ligne+1
+        for r in range(3):
+            for c in range(4):
+                if self.grid[r][c] == self.grid[r+1][c]:
+                    return False
+
+        return True
